@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities{
+
+.heading-4{
+
+    @apply text-5xl font-bold ;
+}
+
+.btn-pri{
+    @apply px-8 py-4 text-3xl font-mono font-semibold bg-red-600 text-white 
+}
+
+
+
+
+
+}

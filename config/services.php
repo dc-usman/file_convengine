@@ -30,4 +30,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'cloud_mersive' => [
+        'key' => env('CLOUD_MER_API_KEY'),
+    ]
+
 ];

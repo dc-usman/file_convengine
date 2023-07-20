@@ -30,4 +30,7 @@ Route::get('pdf-to-word',[MediaController::class,'pdftoWordForm'])->name('ptw.fo
 
 Route::post('pdf-to-word',[MediaController::class,'pdftoWordConv'])->name('ptw.conv');
 
-Route::get('/create-word',[MediaController::class,'createWord']);
+// Route::get('/conv-word-to-pdf',[MediaController::class,'wordtopdfForm'])->name('wtp.conv');
+
+// Route::post('/conv-word-to-pdf',[MediaController::class,'wordtopdfConv']);
+

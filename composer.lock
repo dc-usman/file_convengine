@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7701f330df021242e1a941aead9cad23",
+    "content-hash": "462100ce00894e76e1822e03fe29e9ff",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -116,6 +116,116 @@
                 }
             ],
             "time": "2023-01-15T23:15:59+00:00"
+        },
+        {
+            "name": "cloudmersive/cloudmersive_document_convert_api_client",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Cloudmersive/Cloudmersive.APIClient.PHP.DocumentAndDataConvert.git",
+                "reference": "a44d47370c95edc1044a4ce784801f0a7fbee3d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Cloudmersive/Cloudmersive.APIClient.PHP.DocumentAndDataConvert/zipball/a44d47370c95edc1044a4ce784801f0a7fbee3d4",
+                "reference": "a44d47370c95edc1044a4ce784801f0a7fbee3d4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "guzzlehttp/guzzle": "^7.5",
+                "php": ">=7.2.5"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~2.12",
+                "phpunit/phpunit": "^4.8",
+                "squizlabs/php_codesniffer": "~2.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Swagger\\Client\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Cloudmersive",
+                    "homepage": "https://cloudmersive.com"
+                }
+            ],
+            "homepage": "https://cloudmersive.com",
+            "keywords": [
+                "api",
+                "php",
+                "sdk",
+                "swagger"
+            ],
+            "support": {
+                "issues": "https://github.com/Cloudmersive/Cloudmersive.APIClient.PHP.DocumentAndDataConvert/issues",
+                "source": "https://github.com/Cloudmersive/Cloudmersive.APIClient.PHP.DocumentAndDataConvert/tree/v3.0.1"
+            },
+            "time": "2023-07-02T03:00:50+00:00"
+        },
+        {
+            "name": "cloudmersive/cloudmersive_validate_api_client",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Cloudmersive/Cloudmersive.APIClient.PHP.Validate.git",
+                "reference": "21d8816b5d8cbe13081f0e02d9cccff4fcc6581b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Cloudmersive/Cloudmersive.APIClient.PHP.Validate/zipball/21d8816b5d8cbe13081f0e02d9cccff4fcc6581b",
+                "reference": "21d8816b5d8cbe13081f0e02d9cccff4fcc6581b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "guzzlehttp/guzzle": "^7.5",
+                "php": ">=7.2.5"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~2.12",
+                "phpunit/phpunit": "^4.8",
+                "squizlabs/php_codesniffer": "~2.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Swagger\\Client\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Cloudmersive",
+                    "homepage": "https://cloudmersive.com"
+                }
+            ],
+            "homepage": "https://cloudmersive.com",
+            "keywords": [
+                "api",
+                "php",
+                "sdk",
+                "swagger"
+            ],
+            "support": {
+                "issues": "https://github.com/Cloudmersive/Cloudmersive.APIClient.PHP.Validate/issues",
+                "source": "https://github.com/Cloudmersive/Cloudmersive.APIClient.PHP.Validate/tree/v3.0.1"
+            },
+            "time": "2023-07-02T02:30:17+00:00"
         },
         {
             "name": "dflydev/dot-access-data",

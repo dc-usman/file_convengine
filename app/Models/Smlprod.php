@@ -25,6 +25,13 @@ class Smlprod extends Model implements HasMedia
               ->width(368)
               ->height(232)
               ->sharpen(10);
+              
+
+              $this->addMediaConversion('pdf_to_image')
+            ->format('png')
+            ->performOnCollections('default');
+
     }
+
 
 }

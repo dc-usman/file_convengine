@@ -6,6 +6,8 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "aspose-cloud/aspose-words-cloud": "^23.6",
+        "aspose/pdf-sdk-php": "^23.7",
         "cloudmersive/cloudmersive_document_convert_api_client": "^3.0",
         "cloudmersive/cloudmersive_validate_api_client": "^3.0",
         "fruitcake/laravel-cors": "^2.0",

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\Settings;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\PdfToText\Pdf;
 use Spatie\PdfToImage\Pdf as ImgExt;
 use Swagger\Client\Api\EmailApi;
@@ -253,6 +254,48 @@ class MediaController extends Controller
             echo 'Exception when calling ConvertDocumentApi->convertDocumentPdfToDocx: ', $e->getMessage(), PHP_EOL;
         }
 
-        return asset('storage/uploads/word_files/').'/'.$randomString.'outfile.docx';
+        return asset('storage/uploads/word_files/') . '/' . $randomString . 'outfile.docx';
+    }
+
+
+    /*--------trying aspose.word cloud services--------*/
+
+
+    public function pdftoImgConv(Request $request)
+    {
+
+        // $pdfFile = $request->file('pdf');
+
+        // $pdfFile = asset('storage/uploads/h_cv.pdf');
+        $pdfFile = 'F:\dc projects\media_library\media-lib\public\storage\uploads\h_cv.pdf';
+        $media = new Smlprod();
+
+        $media->addMedia($pdfFile)
+            ->toMediaCollection();
+
+        // $media->conversions()->add('pdf_to_image')->performOnCollections('default');
+
+       return $media->addMediaConversion('pdf_to_image')
+            ->format('png')
+            ->performOnCollections('default');
+
+
+        // return response()->json([
+        //     'message' => 'PDF uploaded and conversion started.',
+        //     'media_id' => $media->id,
+        // ]);
+        $this->getMediaUrl($media);
+
+        // return $media->getUrl();
+    }
+
+
+    public function getMediaUrl($media)
+    {
+        // $url = $media->getUrl();
+
+       $url= Media::findorFail($media->id)->getUrl();
+
+        dd($url) ;
     }
 }

@@ -10,6 +10,7 @@
         "aspose/pdf-sdk-php": "^23.7",
         "cloudmersive/cloudmersive_document_convert_api_client": "^3.0",
         "cloudmersive/cloudmersive_validate_api_client": "^3.0",
+        "convertapi/convertapi-php": "^1.7",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",

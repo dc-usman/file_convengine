@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "777ea179f836c0ff04a6e6cde632bb62",
+    "content-hash": "db63f89792873c32c26643a75ed0ba14",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -466,6 +466,58 @@
                 "source": "https://github.com/Cloudmersive/Cloudmersive.APIClient.PHP.Validate/tree/v3.0.1"
             },
             "time": "2023-07-02T02:30:17+00:00"
+        },
+        {
+            "name": "convertapi/convertapi-php",
+            "version": "v1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ConvertAPI/convertapi-php.git",
+                "reference": "72dc773a1c840e7e33ced8cece6e751a9d38ba1e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ConvertAPI/convertapi-php/zipball/72dc773a1c840e7e33ced8cece6e751a9d38ba1e",
+                "reference": "72dc773a1c840e7e33ced8cece6e751a9d38ba1e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "ConvertApi\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ConvertAPI and contributors",
+                    "homepage": "https://github.com/ConvertAPI/convertapi-php/graphs/contributors"
+                }
+            ],
+            "description": "Convert API PHP Client",
+            "homepage": "https://github.com/ConvertAPI/convertapi-php",
+            "keywords": [
+                "api",
+                "client",
+                "conversion",
+                "convert"
+            ],
+            "support": {
+                "issues": "https://github.com/ConvertAPI/convertapi-php/issues",
+                "source": "https://github.com/ConvertAPI/convertapi-php/tree/v1.7.0"
+            },
+            "time": "2023-07-18T19:30:59+00:00"
         },
         {
             "name": "dflydev/dot-access-data",

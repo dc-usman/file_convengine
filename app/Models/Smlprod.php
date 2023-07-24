@@ -14,7 +14,7 @@ class Smlprod extends Model implements HasMedia
     use InteractsWithMedia;
 
 
-    protected $fillable = ['name' ,'title','body'];
+    protected $fillable = ['id','name' ,'title','body'];
 
 
 
@@ -25,10 +25,10 @@ class Smlprod extends Model implements HasMedia
               ->width(368)
               ->height(232)
               ->sharpen(10);
-              
 
-              $this->addMediaConversion('pdf_to_image')
-            ->format('png')
+
+        $this->addMediaConversion('pdf_to_image')
+            ->format('jpg')
             ->performOnCollections('default');
 
     }

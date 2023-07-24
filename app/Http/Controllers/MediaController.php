@@ -270,15 +270,23 @@ class MediaController extends Controller
         $pdfFile = 'F:\dc projects\media_library\media-lib\public\storage\uploads\h_cv.pdf';
         $media = new Smlprod();
 
+            $media->create([
+                'name' => 'Mufasa',
+                'title' => 'set any title from factory indeed',
+                'body' => 'This is text,sole purpose is for testing some features',
+            ]);
+
         $media->addMedia($pdfFile)
-            ->toMediaCollection();
+            ->toMediaCollection('Pdfs');
+
 
         // $media->conversions()->add('pdf_to_image')->performOnCollections('default');
 
-       return $media->addMediaConversion('pdf_to_image')
+        $media->addMediaConversion('pdf_to_image')
             ->format('png')
             ->performOnCollections('default');
 
+            dd($media);
 
         // return response()->json([
         //     'message' => 'PDF uploaded and conversion started.',
@@ -292,10 +300,11 @@ class MediaController extends Controller
 
     public function getMediaUrl($media)
     {
-        // $url = $media->getUrl();
 
-       $url= Media::findorFail($media->id)->getUrl();
+    dd($media);        // $url = $media->getUrl();
 
-        dd($url) ;
+       $url= Media::findorFail('1')->getUrl();
+
+        dd($url);
     }
 }

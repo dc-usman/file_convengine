@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\MergeDocController;
 use App\Models\Smlprod;
 use Illuminate\Support\Facades\Route;
 
@@ -53,7 +54,12 @@ Route::get('add-media-to-library', function(){
     // F:\dc projects\media_library\media-lib\public\storage\uploads\images\beautiful_library.webp
 });
 
+Route::get('/compare-doc',[MediaController::class,'compareDocFiles']);
+
+Route::get('/convert-to-jpg',[MediaController::class,'ConvertToJpg']);
 // Route::get('/conv-word-to-pdf',[MediaController::class,'wordtopdfForm'])->name('wtp.conv');
 
 // Route::post('/conv-word-to-pdf',[MediaController::class,'wordtopdfConv']);
+Route::get('/convert-to-png',[MediaController::class,'ConvertToPng']);
 
+Route::get('/merge-doc',[MergeDocController::class,'mergeDocumentDocx']);

@@ -12,6 +12,7 @@ use PhpOffice\PhpWord\Settings;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\PdfToText\Pdf;
 use Spatie\PdfToImage\Pdf as ImgExt;
+use Swagger\Client\Api\CompareDocumentApi;
 use Swagger\Client\Api\EmailApi;
 use Swagger\Client\Configuration;
 use Swagger\Client\Api\ConvertDocumentApi;
@@ -21,6 +22,11 @@ class MediaController extends Controller
 {
     protected $randomString;
 
+    public function __construct()
+    {
+        $this->randomString =  substr(md5(rand()), 0, 5);
+
+    }
 
     public function index()
     {
@@ -65,7 +71,7 @@ class MediaController extends Controller
     public function convertToPdf($wordFilePath)
     {
 
-        $randomString = substr(md5(rand()), 0, 5);
+
 
         // dd($wordFilePath);
         // Set PDF renderer path
@@ -83,9 +89,9 @@ class MediaController extends Controller
         // Save the Word file as PDF
         // $phpWord->save('..\..\..\storage\app\public\uploads\file.pdf', 'PDF');
 
-        $phpWord->save('F:\dc projects\media_library\media-lib\public\storage\uploads\\' . $randomString . '.pdf', 'PDF');
+        $phpWord->save('F:\dc projects\media_library\media-lib\public\storage\uploads\\' . $this->randomString . '.pdf', 'PDF');
 
-        $downloadLink = asset('storage/uploads/' . $randomString . '.pdf');
+        $downloadLink = asset('storage/uploads/' . $this->randomString . '.pdf');
 
         // dd($downloadLink);
         // dd('Word file has converted to PDF');
@@ -229,9 +235,9 @@ class MediaController extends Controller
 
         $apiInstance = new ConvertDocumentApi(new Client(), $config);
 
-        $randomString = substr(md5(rand()), 0, 5);
+
         // $filePath = "F:\dc projects\media_library\media-lib\public\storage\uploads\h_cv.pd"; // \SplFileObject | Input file to perform the operation on.
-        $output_file = "F:\dc projects\media_library\media-lib\public\storage\uploads\word_files\\" . $randomString . "outfile.docx";
+        $output_file = "F:\dc projects\media_library\media-lib\public\storage\uploads\word_files\\" . $this->randomString . "outfile.docx";
 
         try {
             $result = $apiInstance->convertDocumentPdfToDocx($filePath);
@@ -254,7 +260,7 @@ class MediaController extends Controller
             echo 'Exception when calling ConvertDocumentApi->convertDocumentPdfToDocx: ', $e->getMessage(), PHP_EOL;
         }
 
-        return asset('storage/uploads/word_files/') . '/' . $randomString . 'outfile.docx';
+        return asset('storage/uploads/word_files/') . '/' . $this->randomString . '-output.docx';
     }
 
 
@@ -270,11 +276,11 @@ class MediaController extends Controller
         $pdfFile = 'F:\dc projects\media_library\media-lib\public\storage\uploads\h_cv.pdf';
         $media = new Smlprod();
 
-            $media->create([
-                'name' => 'Mufasa',
-                'title' => 'set any title from factory indeed',
-                'body' => 'This is text,sole purpose is for testing some features',
-            ]);
+        $media->create([
+            'name' => 'Mufasa',
+            'title' => 'set any title from factory indeed',
+            'body' => 'This is text,sole purpose is for testing some features',
+        ]);
 
         $media->addMedia($pdfFile)
             ->toMediaCollection('Pdfs');
@@ -286,7 +292,7 @@ class MediaController extends Controller
             ->format('png')
             ->performOnCollections('default');
 
-            dd($media);
+        dd($media);
 
         // return response()->json([
         //     'message' => 'PDF uploaded and conversion started.',
@@ -301,10 +307,111 @@ class MediaController extends Controller
     public function getMediaUrl($media)
     {
 
-    dd($media);        // $url = $media->getUrl();
+        // dd($media);        // $url = $media->getUrl();
 
-       $url= Media::findorFail('1')->getUrl();
+        $url = Media::findorFail('1')->getUrl();
 
         dd($url);
     }
+
+
+
+    // compare doc files
+
+    public function compareDocFiles()
+    {
+        $config = $this->apiAuthorization();
+        $apiInstance = new CompareDocumentApi(new Client(), $config);
+
+        $input_file1 = storage_path('app\public\uploads\word_files\Best Essay Writing Service Ireland.docx'); // \SplFileObject | First input file to perform the operation on.
+        // F:\dc projects\media_library\media-lib\public\storage\uploads\word_files\Best Essay Writing Service Ireland.docx
+        $input_file2 = storage_path('app\public\uploads\word_files\website changes cvwritingservice.docx');
+        // $input_file2 = "/path/to/file.txt"; // \SplFileObject | Second input file to perform the operation on (more than 2 can be supplied).
+
+        $output_file = "F:\dc projects\media_library\media-lib\public\storage\uploads\word_files\\" . $this->randomString . "-compare.docx";
+
+        try {
+            $result = $apiInstance->compareDocumentDocx($input_file1, $input_file2);
+
+            $file = fopen($output_file, "wb");
+
+            // Write the raw data into the file
+            fwrite($file, $result);
+
+            // Close the file
+            fclose($file);
+
+            // print_r($result);
+        } catch (Exception $e) {
+            echo 'Exception when calling CompareDocumentApi->compareDocumentDocx: ', $e->getMessage(), PHP_EOL;
+        }
+    }
+
+
+    public function ConvertToJpg(){
+
+      $apiInstance =  $this->ConvertDocumentApi();
+
+       $input_file = storage_path('app\public\uploads\Syed Faraz Shahid Resume_removed web intern.pdf'); // \SplFileObject | Input file to perform the operation on.
+
+       $quality = 56; // int | Optional; Set the JPEG quality level; lowest quality is 1 (highest compression), highest quality (lowest compression) is 100; recommended value is 75. Default value is 75.
+
+    //    dd($apiInstance);
+        try {
+             $result = $apiInstance->convertDocumentAutodetectToJpg($input_file, $quality);
+             print_r($result);
+            } catch (Exception $e) {
+                echo 'Exception when calling ConvertDocumentApi->convertDocumentAutodetectToJpg: ', $e->getMessage(), PHP_EOL;
+            }
+
+    }
+
+
+    public function ConvertToPng(){
+
+        $apiInstance =  $this->ConvertDocumentApi();
+
+        $input_file = storage_path('app\public\uploads\Syed Faraz Shahid Resume_removed web intern.pdf'); // \SplFileObject | Input file to perform the operation on.
+
+        try {
+            $result = $apiInstance->convertDocumentAutodetectToPngArray($input_file);
+            // print_r($result);
+            foreach ($result['png_result_pages'] as $png){
+                dd($png['url']);
+            }
+            // dd($result['png_result_pages'][0]['url']);
+
+        } catch (Exception $e) {
+            echo 'Exception when calling ConvertDocumentApi->convertDocumentAutodetectToPngArray: ', $e->getMessage(), PHP_EOL;
+        }
+
+    }
+
+    // function to handle api authorization
+    public function apiAuthorization()
+    {
+        $config = Configuration::getDefaultConfiguration()->setApiKey('Apikey', config('services.cloud_mersive.key'));
+
+        return $config;
+    }
+
+    //call to parent api referred as convertDocumnetApi
+    public function ConvertDocumentApi(){
+        $config = $this->apiAuthorization();
+
+        $apiInstance = new ConvertDocumentApi(
+            // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+            // This is optional, `GuzzleHttp\Client` will be used as default.
+            new Client(),
+            $config
+        );
+
+        return $apiInstance;
+
+    }
+
+
+    // merge two documents
+
+   
 }

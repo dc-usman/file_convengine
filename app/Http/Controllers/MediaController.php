@@ -16,6 +16,8 @@ use Swagger\Client\Api\CompareDocumentApi;
 use Swagger\Client\Api\EmailApi;
 use Swagger\Client\Configuration;
 use Swagger\Client\Api\ConvertDocumentApi;
+use Swagger\Client\Api\EditPdfApi;
+use Swagger\Client\Api\ViewerToolsApi;
 use TCPDF;
 
 class MediaController extends Controller
@@ -25,7 +27,6 @@ class MediaController extends Controller
     public function __construct()
     {
         $this->randomString =  substr(md5(rand()), 0, 5);
-
     }
 
     public function index()
@@ -348,26 +349,27 @@ class MediaController extends Controller
     }
 
 
-    public function ConvertToJpg(){
+    public function ConvertToJpg()
+    {
 
-      $apiInstance =  $this->ConvertDocumentApi();
+        $apiInstance =  $this->ConvertDocumentApi();
 
-       $input_file = storage_path('app\public\uploads\Syed Faraz Shahid Resume_removed web intern.pdf'); // \SplFileObject | Input file to perform the operation on.
+        $input_file = storage_path('app\public\uploads\Syed Faraz Shahid Resume_removed web intern.pdf'); // \SplFileObject | Input file to perform the operation on.
 
-       $quality = 56; // int | Optional; Set the JPEG quality level; lowest quality is 1 (highest compression), highest quality (lowest compression) is 100; recommended value is 75. Default value is 75.
+        $quality = 56; // int | Optional; Set the JPEG quality level; lowest quality is 1 (highest compression), highest quality (lowest compression) is 100; recommended value is 75. Default value is 75.
 
-    //    dd($apiInstance);
+        //    dd($apiInstance);
         try {
-             $result = $apiInstance->convertDocumentAutodetectToJpg($input_file, $quality);
-             print_r($result);
-            } catch (Exception $e) {
-                echo 'Exception when calling ConvertDocumentApi->convertDocumentAutodetectToJpg: ', $e->getMessage(), PHP_EOL;
-            }
-
+            $result = $apiInstance->convertDocumentAutodetectToJpg($input_file, $quality);
+            print_r($result);
+        } catch (Exception $e) {
+            echo 'Exception when calling ConvertDocumentApi->convertDocumentAutodetectToJpg: ', $e->getMessage(), PHP_EOL;
+        }
     }
 
 
-    public function ConvertToPng(){
+    public function ConvertToPng()
+    {
 
         $apiInstance =  $this->ConvertDocumentApi();
 
@@ -376,7 +378,7 @@ class MediaController extends Controller
         try {
             $result = $apiInstance->convertDocumentAutodetectToPngArray($input_file);
             // print_r($result);
-            foreach ($result['png_result_pages'] as $png){
+            foreach ($result['png_result_pages'] as $png) {
                 dd($png['url']);
             }
             // dd($result['png_result_pages'][0]['url']);
@@ -384,7 +386,6 @@ class MediaController extends Controller
         } catch (Exception $e) {
             echo 'Exception when calling ConvertDocumentApi->convertDocumentAutodetectToPngArray: ', $e->getMessage(), PHP_EOL;
         }
-
     }
 
     // function to handle api authorization
@@ -396,7 +397,8 @@ class MediaController extends Controller
     }
 
     //call to parent api referred as convertDocumnetApi
-    public function ConvertDocumentApi(){
+    public function ConvertDocumentApi()
+    {
         $config = $this->apiAuthorization();
 
         $apiInstance = new ConvertDocumentApi(
@@ -407,11 +409,57 @@ class MediaController extends Controller
         );
 
         return $apiInstance;
+    }
+
+    public function SetWatermarkOnPdf()
+    {
+
+        $config = $this->apiAuthorization();
+
+        $apiInstance = new EditPdfApi(new Client(), $config);
+
+        $watermark_text = "watermark_text_example"; // string | Watermark text to add to the PDF (required)
+        $input_file = storage_path('app\public\uploads\AbbasZohairResume web intern.pdf'); // \SplFileObject | Input file to perform the operation on.
+        $font_name = "font_name_example"; // string | Font Family Name for the watermark text; default is Times New Roman
+        $font_size = 8.14; // float | Font Size in points of the text; default is 150
+        $font_color = "font_color_example"; // string | Font color in hexadecimal or HTML color name; default is Red
+        $font_transparency = 8.14; // float | Font transparency between 0.0 (completely transparent) to 1.0 (fully opaque); default is 0.5
+
+
+        try {
+            $result = $apiInstance->editPdfWatermarkText($watermark_text, $input_file, $font_name, $font_size, $font_color, $font_transparency);
+            print_r($result);
+        } catch (Exception $e) {
+            echo 'Exception when calling EditPdfApi->editPdfWatermarkText: ', $e->getMessage(), PHP_EOL;
+        }
 
     }
 
 
-    // merge two documents
+    public function ViewTools(){
 
-   
+        // $config = $this->apiAuthorization();
+
+        // $apiInstance = new ViewerToolsApi(new Client(),$config);
+
+        // $input_file = storage_path('app\public\uploads\Academic writing test.docx'); // \SplFileObject | Input file to perform the operation on.
+        // $width = 56; // int | Optional; width of the output viewer in pixels
+        // $height = 56; // int | Optional; height of the output viewer in pixels
+
+    // try{
+    //     $result = $apiInstance->viewerToolsCreateSimple($input_file, $width, $height);
+    //     // print_r($result);
+    //    $view_doc = $result['html_embed'];
+    //    return view('pages.preview',compact('view_doc'));
+
+    // } catch (Exception $e) {
+    // echo 'Exception when calling ViewerToolsApi->viewerToolsCreateSimple: ', $e->getMessage(), PHP_EOL;
+    // }
+
+    return view('pages.preview');
+    }
+
+
+
+
 }

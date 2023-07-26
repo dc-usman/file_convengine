@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\MediaController;
-use App\Http\Controllers\MergeDocController;
+use App\Http\Controllers\MergeController;
+use App\Http\Controllers\SplitController;
 use App\Models\Smlprod;
 use Illuminate\Support\Facades\Route;
 
@@ -62,4 +63,15 @@ Route::get('/convert-to-jpg',[MediaController::class,'ConvertToJpg']);
 // Route::post('/conv-word-to-pdf',[MediaController::class,'wordtopdfConv']);
 Route::get('/convert-to-png',[MediaController::class,'ConvertToPng']);
 
-Route::get('/merge-doc',[MergeDocController::class,'mergeDocumentDocx']);
+Route::get('/merge-doc',[MergeController::class,'mergeDocumentDocx']);
+
+Route::get('/merge-pdf',[MergeController::class,'mergePdf']);
+
+Route::get('/split-doc',[SplitController::class,'SplitDocumentDocx'])->name('split');
+// Route::post('/split-doc',[SplitController::class,'SplitDocumentDocx'])->name('split.res');
+Route::get('/split-pdf',[SplitController::class,'SplitDocumentPdf']);
+// Route::get('/')
+// Route::get('/split-doc',[Sp])
+Route::get('/get-watermark-on-pdf',[MediaController::class,'SetWatermarkOnPdf']);
+
+Route::get('/view-tools',[MediaController::class,'ViewTools']);

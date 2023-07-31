@@ -1,7 +1,4 @@
-@extends('layout.web')
-
-
-@section('content')
+<div>
     <div class="container mx-auto px-4">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, fugiat. Harum voluptatem libero, debitis optio
             quasi, obcaecati odio repellat, expedita laborum neque quibusdam corporis
@@ -54,7 +51,8 @@
             </div>
 
             <div>
-                <a href="{{ route('wtp.form') }}"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+
+                <a data-modal-target="defaultModal" data-modal-toggle="defaultModal" wire:click.prevent="showWTPForm" class="cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
                         viewBox="0 0 50 50">
                         <path
                             d="M17.676 34.344h9.55c2.477 0 3.375-.258 4.28-.742a5.04 5.04 0 0 0 2.098-2.102c.484-.902.742-1.8.742-4.277v-9.547H44.82c1.8 0 2.453.188 3.113.54s1.176.87 1.527 1.527.54 1.31.54 3.113V44.82c0 1.8-.187 2.453-.54 3.113a3.69 3.69 0 0 1-1.527 1.527c-.66.352-1.312.54-3.113.54H22.855c-1.8 0-2.453-.187-3.113-.54s-1.172-.87-1.527-1.527-.54-1.312-.54-3.113zm0 0"
@@ -72,10 +70,21 @@
                     <p>Word to PDF</p>
                     <p>Make DOC and DOCX files easy to read by converting them to PDF.</p>
                 </a>
+
+
+
+                
+
+
+                {{-- @if($isButtonVisible)
+                    @livewire('convert-to-pdf')
+                @endif --}}
+
+
             </div>
 
             <div>
-                <a href="{{ route('ptw.form') }}"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                <a wire:click="increment()"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"
                         viewBox="0 0 50 50">
                         <path
                             d="M32.324 15.656h-9.547c-2.477 0-3.375.258-4.28.742a5.04 5.04 0 0 0-2.098 2.102c-.484.902-.742 1.8-.742 4.277v9.547H5.18c-1.8 0-2.45-.187-3.113-.54-.648-.348-1.184-.88-1.527-1.527-.352-.66-.54-1.31-.54-3.113V5.18c0-1.8.188-2.45.54-3.113S1.4.89 2.066.54 3.38 0 5.18 0h21.965c1.8 0 2.453.188 3.113.54.648.344 1.18.88 1.527 1.527.352.66.54 1.313.54 3.113zm0 0"
@@ -90,7 +99,7 @@
                             d="M38.996 26.75h2.965l-2.94 14.64h-3.094l-1.777-9.035-1.824 9.035H29.12L26.2 26.75h3.164l1.508 9.363 1.938-9.363h3.004l1.727 9.297zm0 0"
                             fill="rgb(100%,100%,100%)"></path>
                     </svg>
-                    <p>Word to PDF</p>
+                    <p>Pdf to Word</p>
                     <p>Make DOC and DOCX files easy to read by converting them to PDF.</p>
                 </a>
             </div>
@@ -100,4 +109,4 @@
 
 
     </div>
-@endsection
+</div>

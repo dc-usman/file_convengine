@@ -3,6 +3,7 @@
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\MergeController;
 use App\Http\Controllers\SplitController;
+use App\Http\Livewire\HomeDashboard;
 use App\Models\Smlprod;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/',[HomeDashboard::class,'showWTPForm']);
+
 
 Route::get('/home',[MediaController::class,'index']);
 
@@ -75,3 +79,6 @@ Route::get('/split-pdf',[SplitController::class,'SplitDocumentPdf']);
 Route::get('/get-watermark-on-pdf',[MediaController::class,'SetWatermarkOnPdf']);
 
 Route::get('/view-tools',[MediaController::class,'ViewTools']);
+
+
+

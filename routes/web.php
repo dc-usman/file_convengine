@@ -24,6 +24,7 @@ Route::get('/', function () {
 
 Route::post('/',[HomeDashboard::class,'showWTPForm']);
 
+Route::post()
 
 Route::get('/home',[MediaController::class,'index']);
 
